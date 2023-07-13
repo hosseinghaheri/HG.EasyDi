@@ -8,33 +8,29 @@ namespace HG.EasyDi.PlantTest.Controllers
     [Route("api/[controller]")]
     public class SampleController : ControllerBase
     {
-        private readonly ISampleService1 _sampleService;
+        private readonly ISampleService1 sampleService1;
+        private readonly SampleService2 sampleService2;
 
-        public SampleController(ISampleService1 sampleService)
+        public SampleController(ISampleService1 sampleService1,SampleService2 sampleService2)
         {
-            _sampleService = sampleService;
+            this.sampleService1 = sampleService1;
+            this.sampleService2 = sampleService2;
         }
 
         [HttpGet("sum/{x}/{y}")]
         public ActionResult<int> Sum(int x, int y)
         {
-            var result = _sampleService.Sum(x, y);
+            var result = sampleService1.Sum(x, y);
             return Ok(result);
         }
 
-        [HttpGet("mul/{x}/{y}")]
-        public ActionResult<int> Mul(int x, int y)
+        [HttpGet("sum2/{x}/{y}")]
+        public ActionResult<int> Sum2(int x, int y)
         {
-            var result = _sampleService.Mul(x, y);
+            var result = sampleService2.Sum(x, y);
             return Ok(result);
         }
 
-        [HttpGet("diff/{x}/{y}")]
-        public ActionResult<int> Diff(int x, int y)
-        {
-            var result = _sampleService.Diff(x, y);
-            return Ok(result);
-        }
     }
 
 }

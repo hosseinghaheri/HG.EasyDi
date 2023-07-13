@@ -9,7 +9,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddEasyDi();
+builder.Services.AddEasyDi(o=>o.SetNamespaceRootToScan("HG.EasyDi.PlantTest.Service"));
 //builder.Services.AddScoped<ISampleService1,SampleService1>();
 
 var app = builder.Build();

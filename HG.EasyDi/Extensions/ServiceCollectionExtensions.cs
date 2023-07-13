@@ -19,6 +19,7 @@ namespace HG.EasyDi
         }
         public static IServiceCollection AddEasyDi(this IServiceCollection services, EasyDiOptions easyDiOptions = null)
         {
+            if(easyDiOptions == null) easyDiOptions = new EasyDiOptions();
             var types = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(a => a.GetTypes())
                 .Where(t => string.IsNullOrWhiteSpace(easyDiOptions.NamespaceRootToScan) || t.Namespace == easyDiOptions.NamespaceRootToScan && t.GetCustomAttributes(typeof(EasyDiAttribute), true).Length > 0);
@@ -30,19 +31,20 @@ namespace HG.EasyDi
                 {
                     foreach (var serviceLifetime in attribute.ServiceLifetimes)
                     {
+                        var itype = type.GetInterfaces().FirstOrDefault();
                         switch (serviceLifetime)
                         {
                             case ServiceLifetime.Singleton:
-                                //services.AddSingleton(type);
-                                services.Add(new ServiceDescriptor(type.GetInterfaces().FirstOrDefault(), type, ServiceLifetime.Singleton));
+                                if(itype == null) services.AddSingleton(type);
+                                else services.Add(new ServiceDescriptor(itype, type, ServiceLifetime.Singleton));
                                 break;
                             case ServiceLifetime.Scoped:
-                                //services.AddScoped(type);
-                                services.Add(new ServiceDescriptor(type.GetInterfaces().FirstOrDefault(), type, ServiceLifetime.Scoped));
+                                if (itype == null) services.AddScoped(type);
+                                else services.Add(new ServiceDescriptor(itype, type, ServiceLifetime.Scoped));
                                 break;
                             case ServiceLifetime.Transient:
-                                //services.AddTransient(type);
-                                services.Add(new ServiceDescriptor(type.GetInterfaces().FirstOrDefault(), type, ServiceLifetime.Transient));
+                                if (itype == null) services.AddTransient(type);
+                                else services.Add(new ServiceDescriptor(itype, type, ServiceLifetime.Transient));
                                 break;
                             default:
                                 throw new ArgumentOutOfRangeException();
