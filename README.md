@@ -61,3 +61,8 @@ public class SampleController : ControllerBase
     // Controller actions
 }
 ```
+## 🤝 Contributing
+Contributions are welcome! If you find a bug or have a feature suggestion, please open an issue on the GitHub repository.
+
+## 📝 License
+This project is licensed under the MIT License.
