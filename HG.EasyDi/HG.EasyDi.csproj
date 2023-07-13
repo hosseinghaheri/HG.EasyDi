@@ -12,6 +12,8 @@
     <FileVersion>1.2.5.0</FileVersion>
     <Version>1.2.5.0</Version>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/hosseinghaheri/HG.EasyDi</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
