@@ -45,7 +45,6 @@ builder.Services.AddEasyDi();
 ```
 Scan special namespace:
 ```C#
-
 builder.Services.AddEasyDi(o=>o.SetNamespaceRootToScan("HG.EasyDi.PlantTest.Service"));
 ```
 Inject and use the services in your controllers or other classes:
