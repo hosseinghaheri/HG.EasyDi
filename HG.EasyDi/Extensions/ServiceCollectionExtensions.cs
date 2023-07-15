@@ -22,7 +22,12 @@ namespace HG.EasyDi
             if(easyDiOptions == null) easyDiOptions = new EasyDiOptions();
             var types = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(a => a.GetTypes())
-                .Where(t => string.IsNullOrWhiteSpace(easyDiOptions.NamespaceRootToScan) || t.Namespace == easyDiOptions.NamespaceRootToScan && t.GetCustomAttributes(typeof(EasyDiAttribute), true).Length > 0);
+                .Where(t => 
+                    (
+                        string.IsNullOrWhiteSpace(easyDiOptions.NamespaceRootToScan) 
+                        || (!string.IsNullOrWhiteSpace(t.Namespace) && t.Namespace.StartsWith(easyDiOptions.NamespaceRootToScan))
+                    )
+                    && t.GetCustomAttributes(typeof(EasyDiAttribute), true).Length > 0);
 
             foreach (var type in types)
             {
