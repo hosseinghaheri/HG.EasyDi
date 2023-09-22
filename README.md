@@ -36,7 +36,10 @@ public class SampleService : ISampleService
     }
 }
 ```
-
+For register service as Lazy Proxy use :
+```C#
+[EasyDi(ServiceLifetime.Singleton, true)]
+```
 Register services in your Program.cs file:
 
 Full Scan:

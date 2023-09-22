@@ -1,4 +1,5 @@
-﻿using HG.EasyDi.PlantTest.Service;
+﻿using HG.EasyDi.PlantTest.LazyProxyService;
+using HG.EasyDi.PlantTest.Service;
 using HG.EasyDi.PlantTest.Service.Cat1;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,12 +14,20 @@ namespace HG.EasyDi.PlantTest.Controllers
         private readonly SampleService2 sampleService2;
         private readonly ISampleService3 sampleService3;
 
-        public SampleController(ISampleService1 sampleService1,SampleService2 sampleService2,ISampleService3 sampleService3)
+        public SampleController(
+            ISampleService1 sampleService1,
+            SampleService2 sampleService2,
+            ISampleService3 sampleService3,
+            ILazyProxyMainService lazyProxyMainService
+        )
         {
             this.sampleService1 = sampleService1;
             this.sampleService2 = sampleService2;
             this.sampleService3 = sampleService3;
+            LazyProxyMainService = lazyProxyMainService;
         }
+
+        public ILazyProxyMainService LazyProxyMainService { get; }
 
         [HttpGet("sum/{x}/{y}")]
         public ActionResult<int> Sum(int x, int y)
@@ -39,6 +48,12 @@ namespace HG.EasyDi.PlantTest.Controllers
         {
             var result = sampleService3.Sum(x, y);
             return Ok(result);
+        }
+        [HttpGet("lazyProxyMainService/DoWork")]
+        public ActionResult<int> lazyProxyMainService_DoWork()
+        {
+            LazyProxyMainService.DoWork();
+            return Ok();
         }
 
     }

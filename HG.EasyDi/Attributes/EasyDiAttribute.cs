@@ -7,12 +7,15 @@ using System.Threading.Tasks;
 
 namespace HG.EasyDi
 {
-    public class EasyDiAttribute:Attribute
+    public class EasyDiAttribute : Attribute
     {
         public readonly IEnumerable<ServiceLifetime> ServiceLifetimes;
-        public EasyDiAttribute(ServiceLifetime serviceLifetime=ServiceLifetime.Singleton)
+        public readonly bool LazyProxy;
+
+        public EasyDiAttribute(ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, bool lazyProxy = false)
         {
             ServiceLifetimes = new List<ServiceLifetime>() { serviceLifetime };
+            LazyProxy = lazyProxy;
         }
     }
 }
