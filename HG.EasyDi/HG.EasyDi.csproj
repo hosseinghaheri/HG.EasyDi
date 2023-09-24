@@ -8,9 +8,9 @@
     <Description>Automatic Service Register</Description>
     <PackageIcon>icon.png</PackageIcon>
     <PackageTags>EasyDi;HG.EasyDi;AutoRegisterService;AutoRegisterDi</PackageTags>
-    <AssemblyVersion>2.3.1.0</AssemblyVersion>
-    <FileVersion>2.3.1.0</FileVersion>
-    <Version>2.3.1.0</Version>
+    <AssemblyVersion>2.5.1.0</AssemblyVersion>
+    <FileVersion>2.5.1.0</FileVersion>
+    <Version>2.5.1.0</Version>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/hosseinghaheri/HG.EasyDi</RepositoryUrl>
     <RepositoryType>git</RepositoryType>

@@ -7,7 +7,7 @@ namespace HG.EasyDi.PlantTest.Service.Cat1
         int Mul(int x, int y);
         int Diff(int x, int y);
     }
-    [EasyDi(ServiceLifetime.Transient)]
+    [EasyDi(ServiceLifetime.Scoped)]
     public class SampleService3 : ISampleService3
     {
         public int Diff(int x, int y)

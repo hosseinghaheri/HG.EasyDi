@@ -9,10 +9,10 @@ namespace HG.EasyDi
 {
     public class EasyDiAttribute : Attribute
     {
-        public readonly IEnumerable<ServiceLifetime> ServiceLifetimes;
-        public readonly bool LazyProxy;
+        public IEnumerable<ServiceLifetime> ServiceLifetimes;
+        public bool LazyProxy;
 
-        public EasyDiAttribute(ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, bool lazyProxy = false)
+        public EasyDiAttribute(ServiceLifetime serviceLifetime = ServiceLifetime.Scoped, bool lazyProxy = false)
         {
             ServiceLifetimes = new List<ServiceLifetime>() { serviceLifetime };
             LazyProxy = lazyProxy;

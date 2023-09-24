@@ -4,7 +4,7 @@
     {
         void DoWork();
     }
-    [EasyDi(ServiceLifetime.Singleton,true)]
+    [LasyDi(ServiceLifetime.Scoped)]
     public class LazyProxyMainService : ILazyProxyMainService
     {
         public LazyProxyMainService()
