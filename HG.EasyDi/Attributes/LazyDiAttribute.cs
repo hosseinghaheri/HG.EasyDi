@@ -2,14 +2,12 @@
 
 namespace HG.EasyDi
 {
-    public class LasyDiAttribute : EasyDiAttribute
+    public class LazyDiAttribute : EasyDiAttribute
     {
-        public LasyDiAttribute(ServiceLifetime serviceLifetime = ServiceLifetime.Scoped)
+        public LazyDiAttribute(ServiceLifetime serviceLifetime = ServiceLifetime.Scoped)
         {
             ServiceLifetimes = new List<ServiceLifetime>() { serviceLifetime };
             LazyProxy = true;
         }
     }
-   
-
 }
