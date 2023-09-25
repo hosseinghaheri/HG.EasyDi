@@ -40,7 +40,7 @@ For register service as Lazy Proxy use :
 ```C#
 [EasyDi(ServiceLifetime.Singleton, true)]
 or 
-[LasyDi(ServiceLifetime.Singleton)]
+[LazyDi(ServiceLifetime.Singleton)]
 ```
 Register services in your Program.cs file:
 
