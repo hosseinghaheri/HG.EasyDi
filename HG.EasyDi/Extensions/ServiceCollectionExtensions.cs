@@ -1,10 +1,9 @@
 ﻿using HG.EasyDi.Models;
-using LazyProxy.ServiceProvider;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace HG.EasyDi
 {
-    public static class ServiceCollectionExtensions
+    public static partial class ServiceCollectionExtensions
     {
         public static IServiceCollection AddEasyDi(this IServiceCollection services, Action<EasyDiOptions> setupAction)
         {
@@ -13,7 +12,7 @@ namespace HG.EasyDi
             services.AddEasyDi(easyDiOptions);
             return services;
         }
-        public static IServiceCollection AddEasyDi(this IServiceCollection services, EasyDiOptions easyDiOptions = null)
+        public static IServiceCollection AddEasyDi(this IServiceCollection services, EasyDiOptions easyDiOptions = null!)
         {
             if (easyDiOptions == null) easyDiOptions = new EasyDiOptions();
             var types = AppDomain.CurrentDomain.GetAssemblies()
@@ -55,7 +54,6 @@ namespace HG.EasyDi
 
             return services;
         }
-
         public static void DisplayServicesInConsole(this IServiceCollection services)
         {
             Console.WriteLine("|".PadRight(85, '-') + "|");
@@ -76,5 +74,4 @@ namespace HG.EasyDi
             Console.WriteLine("|".PadRight(85, '-') + "|");
         }
     }
-
 }
